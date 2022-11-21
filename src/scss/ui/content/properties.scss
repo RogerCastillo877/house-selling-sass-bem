@@ -1,0 +1,60 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.properties {
+  margin-top: 5rem;
+  @include m.tablet { 
+    margin-top: 5rem;
+  }
+  &__heading {
+    @include m.heading;
+  }
+  &__grid {
+    @include m.grid(1, 2rem);
+    @include m.tablet { 
+      @include m.grid(3, 2rem)
+    }
+  }
+}
+
+.property {
+  background-color: v.$blanco;
+  &__image {
+    aspect-ratio: 10 / 6;
+    background-size: cover;
+    position: relative;
+  }
+  &:nth-child(1) &__image {
+    background-image: url('../img/propiedad_1.jpg');
+  }
+  @for $i from 1 through 6 {
+    $image: '../img/propiedad_' + $i + '.jpg';
+    
+    &:nth-child( #{ $i } ) &__image {
+      background-image: linear-gradient( to bottom, transparentize(v.$negro, 1%) 0%, transparentize(v.$negro, .3%) 100% ), url($image);
+    }
+  }
+  &__name {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    color: v.$blanco;
+    font-size: 2.4rem;
+  }
+
+  &__content {
+    padding: 2rem;
+  }
+  &__text {
+    margin-bottom: 0;
+  }
+  &__price {
+    font-size: 3rem;
+    margin: 0;
+  }
+  &__link {
+    @include m.boton(v.$primario, v.$blanco);
+    display: block;
+    text-transform: uppercase;
+  }
+}
