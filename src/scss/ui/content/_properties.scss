@@ -21,7 +21,7 @@
   background-color: v.$blanco;
   &__image {
     aspect-ratio: 10 / 6;
-    background-size: cover;
+    background-size: auto 150%;
     position: relative;
   }
   &:nth-child(1) &__image {
